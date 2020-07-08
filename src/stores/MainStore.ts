@@ -1,7 +1,14 @@
 import {observable, action, computed} from 'mobx';
 import Loop from '../models/Loop';
+import Project from '../models/Project';
+import {defaultLoopTemplate} from '../models/templates/LoopTemplate';
 
 export default class MainStore {
+	@observable currentProject: Project | null = null;
+
+	@observable projects: Project[] = [];
+	@observable lastProjectId = 0;
+
 	@observable currentLoop: Loop;
 
 	@observable _intervalId: number | null = null;
@@ -21,6 +28,24 @@ export default class MainStore {
 	}
 
 	@action
+	addProject(name: string) {
+		const project = new Project(this.lastProjectId, name, defaultLoopTemplate);
+		this.projects.push(project);
+		this.lastProjectId += 1;
+	}
+
+	@action
+	startProjectLoop(project: Project) {
+		this.currentLoop = Loop.fromTemplate(project.loopTemplate);
+		this.currentProject = project;
+	}
+
+	@action
+	switchProject(project: Project) {
+		this.currentProject = project;
+	}
+
+	@action
 	startTimer() {
 		if (this._intervalId !== null) {
 			throw new Error('Timer has already started');
@@ -31,6 +56,9 @@ export default class MainStore {
 				this.stopTimer();
 			} else {
 				this.currentTimer.increment();
+				if (this.currentProject !== null) {
+					this.currentProject.totalCompletedSeconds += 1;
+				}
 			}
 		}, 1000);
 	}
