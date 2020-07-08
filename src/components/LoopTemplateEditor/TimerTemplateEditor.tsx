@@ -20,7 +20,7 @@ export default function TimerTemplateEditor({
 			<Select
 				value={options.find((option) => option.value === timerTemplate.type)}
 				options={options}
-                onChange={(option: {value: string}) =>
+				onChange={(option: {value: string}) =>
 					timerTemplate.updateType(option.value as TimerType)
 				}
 			/>
