@@ -9,6 +9,7 @@ interface Props {
 export default function TimerWatchFace({timer}: Props): ReactElement {
 	return useObserver(() => (
 		<div>
+			<div>Type: {timer.type}</div>
 			<div>Completed seconds: {timer.completedSeconds}</div>
 			<div>Duration: {timer.duration}</div>
 		</div>
