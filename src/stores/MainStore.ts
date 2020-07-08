@@ -1,18 +1,23 @@
 import {observable, action, computed} from 'mobx';
-import Timer from '../models/Timer';
+import Loop from '../models/Loop';
 
 export default class MainStore {
-	@observable currentTimer: Timer;
+	@observable currentLoop: Loop;
 
 	@observable _intervalId: number | null = null;
 
-	constructor(timer: Timer) {
-		this.currentTimer = timer;
+	constructor(loop: Loop) {
+		this.currentLoop = loop;
 	}
 
 	@computed
 	get isTicking() {
 		return this._intervalId !== null;
+	}
+
+	@computed
+	get currentTimer() {
+		return this.currentLoop.currentTimer;
 	}
 
 	@action
@@ -22,7 +27,11 @@ export default class MainStore {
 		}
 
 		this._intervalId = window.setInterval(() => {
-			this.currentTimer.increment();
+			if (this.currentTimer.isCompleted) {
+				this.stopTimer();
+			} else {
+				this.currentTimer.increment();
+			}
 		}, 1000);
 	}
 
@@ -39,5 +48,15 @@ export default class MainStore {
 	@action
 	resetTimer() {
 		this.currentTimer.reset();
+	}
+
+	@action
+	switchToNextTimer() {
+		this.currentLoop.switchToNextTimer();
+	}
+
+	@action
+	switchToPreviousTimer() {
+		this.currentLoop.switchToPreviousTimer();
 	}
 }

@@ -1,4 +1,5 @@
 import {observable, action, computed} from 'mobx';
+import TimerTemplate from './templates/TimerTemplate';
 
 export default class Timer {
 	@observable duration: number;
@@ -6,6 +7,11 @@ export default class Timer {
 
 	constructor(duration: number) {
 		this.duration = duration;
+	}
+
+	static fromTemplate(template: TimerTemplate): Timer {
+		const {duration} = template;
+		return new Timer(duration);
 	}
 
 	@computed

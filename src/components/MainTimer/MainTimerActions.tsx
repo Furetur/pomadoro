@@ -15,6 +15,12 @@ export default function MainTimerActions(): ReactElement {
 			<button type="button" onClick={() => mainStore.resetTimer()}>
 				Reset
 			</button>
+			<button type="button" onClick={() => mainStore.switchToNextTimer()}>
+				Next
+			</button>
+			<button type="button" onClick={() => mainStore.switchToPreviousTimer()}>
+				Prev
+			</button>
 		</div>
 	));
 }

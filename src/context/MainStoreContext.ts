@@ -1,10 +1,9 @@
 import {createContext} from 'react';
 import MainStore from '../stores/MainStore';
-import Timer from '../models/Timer';
+import Loop from '../models/Loop';
+import {defaultLoopTemplate} from '../models/templates/LoopTemplate';
 
-const timer = new Timer(100);
-
-export const mainStore = new MainStore(timer);
+export const mainStore = new MainStore(Loop.fromTemplate(defaultLoopTemplate));
 
 const mainStoreContext = createContext<MainStore>(mainStore);
 
