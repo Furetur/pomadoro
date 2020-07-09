@@ -3,7 +3,7 @@ import {useObserver} from 'mobx-react';
 import mainStoreContext from '../../context/MainStoreContext';
 import ProjectListItem from './ProjectListItem';
 
-export default function ProjectList(): ReactElement {
+export default function ProjectsList(): ReactElement {
 	const mainStore = useContext(mainStoreContext);
 	return useObserver(() => (
 		<ul>

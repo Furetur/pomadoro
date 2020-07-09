@@ -5,6 +5,11 @@ import mainStoreContext from '../../context/MainStoreContext';
 export default function ProjectTopBar(): ReactElement {
 	const mainStore = useContext(mainStoreContext);
 	return useObserver(() => (
-		<div>Project: {mainStore.currentProject?.name || 'None'}</div>
+		<div className="project-top-bar">
+			<span className="project-badge" />
+			<span className="project-name">
+				{mainStore.currentProject?.name || 'No project selected'}
+			</span>
+		</div>
 	));
 }

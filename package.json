@@ -13,6 +13,12 @@
             "pascalCase": true
           }
         }
+      ],
+      "import/no-unassigned-import": [
+        "error",
+        {
+          "allow": ["**/*.css"]
+        }
       ]
     },
     "extends": [
@@ -30,7 +36,8 @@
     "mobx-react": "^6.2.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-select": "^3.1.0"
+    "react-select": "^3.1.0",
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
@@ -38,6 +45,7 @@
     "@babel/preset-react": "^7.10.4",
     "@types/react": "^16.9.41",
     "@types/react-select": "^3.0.14",
+    "@types/styled-components": "^5.1.1",
     "eslint-config-xo-react": "^0.23.0",
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.6",

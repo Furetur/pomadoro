@@ -1,17 +1,20 @@
 import React, {ReactElement} from 'react';
 import mainStoreContext, {mainStore} from './context/MainStoreContext';
-import MainTimer from './components/MainTimer/MainTimer';
-import ProjectList from './components/ProjectList/ProjectList';
-import AddProjectField from './components/ProjectList/AddProjectField';
-import ProjectTopBar from './components/Project/ProjectTopBar';
+import ProjectsList from './components/ProjectsList/ProjectsList';
+import './App.css';
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
+import AddProjectField from './components/ProjectsList/AddProjectField';
 
 const App = (): ReactElement => {
 	return (
 		<mainStoreContext.Provider value={mainStore}>
-			<ProjectTopBar />
-			<MainTimer />
-			<AddProjectField />
-			<ProjectList />
+			<Header />
+			<Main />
+			<section className="project-list-section">
+				<AddProjectField />
+				<ProjectsList />
+			</section>
 		</mainStoreContext.Provider>
 	);
 };

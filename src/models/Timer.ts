@@ -20,6 +20,11 @@ export default class Timer {
 		return this.completedSeconds === this.duration;
 	}
 
+	@computed
+	get secondsRemaining() {
+		return this.duration - this.completedSeconds;
+	}
+
 	@action
 	increment() {
 		if (this.completedSeconds < this.duration) {
