@@ -12,10 +12,7 @@ const App = (): ReactElement => {
 		<mainStoreContext.Provider value={mainStore}>
 			<Header />
 			<Main />
-			<section className="project-list-section">
-				<AddProjectButton />
-				<ProjectsList />
-			</section>
+			<ProjectsList />
 		</mainStoreContext.Provider>
 	);
 };

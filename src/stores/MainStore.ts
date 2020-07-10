@@ -28,10 +28,11 @@ export default class MainStore {
 	}
 
 	@action
-	addProject(name = '') {
+	addProject(name = 'Project name'): Project {
 		const project = new Project(this.lastProjectId, name, defaultLoopTemplate);
 		this.projects.push(project);
 		this.lastProjectId += 1;
+		return project;
 	}
 
 	@action

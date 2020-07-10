@@ -1,5 +1,16 @@
-div.inline-editable-field {
+.inline-editable-field {
     height: 30px;
-    width: 300px;
+    width: 100%;
     border: 1px solid grey;
+}
+
+.inline-editable-field > span {
+    height: 30px;
+    width: 100%;
+    line-height: 30px;
+}
+
+.inline-editable-field > input {
+    height: 30px;
+    width: 100%;
 }

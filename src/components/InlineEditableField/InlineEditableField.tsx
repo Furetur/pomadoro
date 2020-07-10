@@ -12,7 +12,8 @@ const InlineEditableField = ({value, onValueUpdate}: Props) => {
 	return (
 		<div className="inline-editable-field" onClick={() => setBeingEdited(true)}>
 			{beingEdited ? (
-				<input
+                <input
+                    autoFocus
 					value={value}
 					onChange={(event) => onValueUpdate(event.target.value)}
 					onBlur={() => setBeingEdited(false)}

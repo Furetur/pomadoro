@@ -4,6 +4,7 @@ import Project from '../../models/Project';
 import {useObserver} from 'mobx-react';
 import LoopTemplateEditor from '../LoopTemplateEditor/LoopTemplateEditor';
 import ProjectListItemActions from '../ProjectsList/ProjectListItemActions';
+import ProjectCardHeader from './ProjectCardHeader';
 
 interface Props {
 	project: Project;
@@ -12,11 +13,7 @@ interface Props {
 const ProjectCard = ({project}: Props) => {
 	return useObserver(() => (
 		<div>
-			<InlineEditableField
-				value={project.name}
-				onValueUpdate={(newValue) => project.setName(newValue)}
-			/>
-			<ProjectListItemActions project={project} />
+			<ProjectCardHeader project={project} />
 			<LoopTemplateEditor loopTemplate={project.loopTemplate} />
 		</div>
 	));

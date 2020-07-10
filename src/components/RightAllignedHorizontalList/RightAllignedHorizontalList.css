@@ -1,0 +1,6 @@
+.right-alligned-horizontal-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    list-style: none;
+}
