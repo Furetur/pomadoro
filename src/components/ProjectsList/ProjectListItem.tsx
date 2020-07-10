@@ -1,20 +1,27 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useContext} from 'react';
 import Project from '../../models/Project';
 import {useObserver} from 'mobx-react';
-import ProjectListItemActions from './ProjectListItemActions';
-import LoopTemplateEditor from '../LoopTemplateEditor/LoopTemplateEditor';
+import ProjectCard from '../ProjectCard/ProjectCard';
+import ProjectCompactCard from '../ProjectCard/ProjectCompactCard';
 
 interface Props {
 	project: Project;
+	fullCard: boolean;
+	onEdit: () => void;
 }
 
-export default function ProjectListItem({project}: Props): ReactElement {
+export default function ProjectListItem({
+	project,
+	onEdit,
+	fullCard
+}: Props): ReactElement {
 	return useObserver(() => (
-		<div>
-			Project name: {project.name}
-			Total completed seconds: {project.totalCompletedSeconds}
-			<ProjectListItemActions project={project} />
-			<LoopTemplateEditor loopTemplate={project.loopTemplate} />
-		</div>
+		<li className="project-list-item">
+			{fullCard ? (
+				<ProjectCard project={project} />
+			) : (
+				<ProjectCompactCard project={project} onOpenFullCard={onEdit} />
+			)}
+		</li>
 	));
 }

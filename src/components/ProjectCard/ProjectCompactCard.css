@@ -1,0 +1,11 @@
+.project-compact-card {
+    display: flex;
+    flex-direction: row;
+    
+    width: 100%;
+}
+
+.project-compact-card-name {
+    width: 70%;
+}
+

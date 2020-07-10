@@ -1,4 +1,4 @@
-import {observable} from 'mobx';
+import {observable, action} from 'mobx';
 import LoopTemplate from './templates/LoopTemplate';
 
 export default class Project {
@@ -11,5 +11,10 @@ export default class Project {
 		this.id = id;
 		this.name = name;
 		this.loopTemplate = template;
+	}
+
+	@action
+	setName(newName: string) {
+		this.name = newName;
 	}
 }

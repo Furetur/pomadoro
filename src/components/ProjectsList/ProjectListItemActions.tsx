@@ -10,13 +10,19 @@ interface Props {
 export default function ProjectListItemActions({project}: Props): ReactElement {
 	const mainStore = useContext(mainStoreContext);
 	return useObserver(() => (
-		<div>
-			<button type="button" onClick={() => mainStore.startProjectLoop(project)}>
-				Start loop
-			</button>
-			<button type="button" onClick={() => mainStore.switchProject(project)}>
-				Switch to project
-			</button>
+		<div className="project-list-item-buttons">
+			{mainStore.isTicking ? (
+				<button type="button" onClick={() => mainStore.switchProject(project)}>
+					Switch
+				</button>
+			) : (
+				<button
+					type="button"
+					onClick={() => mainStore.startProjectLoop(project)}
+				>
+					Track
+				</button>
+			)}
 		</div>
 	));
 }

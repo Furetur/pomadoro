@@ -28,7 +28,7 @@ export default class MainStore {
 	}
 
 	@action
-	addProject(name: string) {
+	addProject(name = '') {
 		const project = new Project(this.lastProjectId, name, defaultLoopTemplate);
 		this.projects.push(project);
 		this.lastProjectId += 1;

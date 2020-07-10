@@ -5,6 +5,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import AddProjectField from './components/ProjectsList/AddProjectField';
+import AddProjectButton from './components/ProjectsList/AddProjectButton';
 
 const App = (): ReactElement => {
 	return (
@@ -12,7 +13,7 @@ const App = (): ReactElement => {
 			<Header />
 			<Main />
 			<section className="project-list-section">
-				<AddProjectField />
+				<AddProjectButton />
 				<ProjectsList />
 			</section>
 		</mainStoreContext.Provider>
