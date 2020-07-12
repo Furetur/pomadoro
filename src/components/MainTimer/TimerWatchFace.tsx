@@ -4,21 +4,21 @@ import Timer from '../../models/Timer';
 import './TimerWatchFace.css';
 import formatSeconds from '../../utils/formatSeconds';
 import ProjectTopBar from '../Project/ProjectTopBar';
+import {Typography, Row, Col} from 'antd';
+import styled from 'styled-components';
 
 interface Props {
 	timer: Timer;
 }
 
+const BigText = styled.span`
+	font-size: 3em;
+`;
+
 export default function TimerWatchFace({timer}: Props): ReactElement {
 	return useObserver(() => (
-		<div className="timer-watch-face">
-			<div className="timer-watch-face-content">
-				<ProjectTopBar />
-				<div className="main-timer-type">{timer.type}</div>
-				<div className="main-timer-digits">
-					{formatSeconds(timer.secondsRemaining)}
-				</div>
-			</div>
-		</div>
+		<Typography.Text>
+			<BigText>{formatSeconds(timer.secondsRemaining)}</BigText>
+		</Typography.Text>
 	));
 }

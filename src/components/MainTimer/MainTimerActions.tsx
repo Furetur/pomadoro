@@ -3,17 +3,20 @@ import mainStoreContext from '../../context/MainStoreContext';
 import {useObserver} from 'mobx-react';
 
 import './MainTimerActions.css';
+import {Button, Space, Row, Col, Popconfirm} from 'antd';
+import {
+	PlayCircleOutlined,
+	StopOutlined,
+	StepForwardOutlined,
+	PauseCircleTwoTone
+} from '@ant-design/icons';
 
 const LoopActions = () => {
 	const mainStore = useContext(mainStoreContext);
 	return useObserver(() => (
 		<div className="loop-actions">
-			<button type="button" onClick={() => mainStore.switchToPreviousTimer()}>
-				Prev
-			</button>
-			<button type="button" onClick={() => mainStore.switchToNextTimer()}>
-				Next
-			</button>
+			<Button onClick={() => mainStore.switchToPreviousTimer()}>Prev</Button>
+			<Button onClick={() => mainStore.switchToNextTimer()}>Next</Button>
 		</div>
 	));
 };
@@ -21,30 +24,73 @@ const LoopActions = () => {
 const CurrentTimerActions = (): ReactElement => {
 	const mainStore = useContext(mainStoreContext);
 	return useObserver(() => (
-		<div className="current-timer-actions">
+		// <Row>
+		// 	<Col span={8}>
+		// 		<Button
+		// 			icon={<StopOutlined />}
+		// 			shape="circle-outline"
+		// 			onClick={() => mainStore.resetTimer()}
+		// 		/>
+		// 	</Col>
+		// 	<Col span={8}>
+		// 		<Button
+		// 			type="primary"
+		// 			icon={<PlayCircleOutlined />}
+		// 			shape="circle-outline"
+		// 			size="large"
+		// 			onClick={() => mainStore.startTimer()}
+		// 		/>
+		// 	</Col>
+		// 	<Col span={8}>
+		// 		<Button
+		// 			icon={<StepForwardOutlined />}
+		// 			shape="circle-outline"
+		// 			onClick={() => mainStore.switchToNextTimer()}
+		// 		/>
+		// 	</Col>
+		// </Row>
+		<Space align="center" size="large" direction="horizontal">
+			<Popconfirm
+				title="Are you sure you want to stop the timer"
+				okText="Yes"
+				cancelText="No"
+				onConfirm={() => mainStore.resetTimer()}
+			>
+				<Button icon={<StopOutlined />} shape="circle-outline" />
+			</Popconfirm>
+
 			{mainStore.isTicking ? (
-				<button type="button" onClick={() => mainStore.stopTimer()}>
-					Stop
-				</button>
+				<Button
+					type="primary"
+					icon={<PauseCircleTwoTone />}
+					shape="circle-outline"
+					size="large"
+					onClick={() => mainStore.stopTimer()}
+				/>
 			) : (
-				<>
-					<button type="button" onClick={() => mainStore.startTimer()}>
-						Start
-					</button>
-					<button type="button" onClick={() => mainStore.resetTimer()}>
-						Reset
-					</button>
-				</>
+				<Button
+					type="primary"
+					icon={<PlayCircleOutlined />}
+					shape="circle-outline"
+					size="large"
+					onClick={() => mainStore.startTimer()}
+				/>
 			)}
-		</div>
+			<Popconfirm
+				title="Are you sure you want to stop the timer and continue to the next one"
+				okText="Yes"
+				cancelText="No"
+				onConfirm={() => mainStore.switchToNextTimer()}
+			>
+				<Button
+					icon={<StepForwardOutlined />}
+					shape="circle-outline"
+				/>
+			</Popconfirm>
+		</Space>
 	));
 };
 
 export default function MainTimerActions(): ReactElement {
-	return useObserver(() => (
-		<div className="timer-actions">
-			<CurrentTimerActions />
-			<LoopActions />
-		</div>
-	));
+	return useObserver(() => <CurrentTimerActions />);
 }

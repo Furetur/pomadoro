@@ -7,29 +7,44 @@ import AddProjectButton from './AddProjectButton';
 import './ProjectsList.css';
 import RightAllignedHorizontalList from '../RightAllignedHorizontalList/RightAllignedHorizontalList';
 import FancyList from '../FancyList/FancyList';
+import {List, Collapse, Col, Typography, Row} from 'antd';
+import LoopTemplateEditor from '../LoopTemplateEditor/LoopTemplateEditor';
+import ProjectListItemActions from './ProjectListItemActions';
 
 export default function ProjectsList(): ReactElement {
 	const [editingProjectId, setEditingProjectId] = useState(null);
 	const mainStore = useContext(mainStoreContext);
 	return useObserver(() => (
-		<section className="project-list-section">
-			<RightAllignedHorizontalList>
-				<li>
+		<>
+			<Row justify="center">
+				<Col>
+					<Typography.Title level={2}>Projects</Typography.Title>
+				</Col>
+			</Row>
+			<Row justify="center">
+				<Col>
 					<AddProjectButton
 						onAddProject={(project) => setEditingProjectId(project.id)}
 					/>
-				</li>
-			</RightAllignedHorizontalList>
-			<FancyList>
+				</Col>
+			</Row>
+			<Collapse accordion>
 				{mainStore.projects.map((project) => (
-					<ProjectListItem
+					<Collapse.Panel
 						key={project.id}
-						project={project}
-						fullCard={project.id === editingProjectId}
-						onEdit={() => setEditingProjectId(project.id)}
-					/>
+						header={
+							<Typography.Text
+								editable={{onChange: (string) => project.setName(string)}}
+							>
+								{project.name}
+							</Typography.Text>
+						}
+						extra={<ProjectListItemActions project={project} />}
+					>
+						<LoopTemplateEditor loopTemplate={project.loopTemplate} />
+					</Collapse.Panel>
 				))}
-			</FancyList>
-		</section>
+			</Collapse>
+		</>
 	));
 }
