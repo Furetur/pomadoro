@@ -7,7 +7,7 @@ import AddProjectButton from './AddProjectButton';
 import './ProjectsList.css';
 import RightAllignedHorizontalList from '../RightAllignedHorizontalList/RightAllignedHorizontalList';
 import FancyList from '../FancyList/FancyList';
-import {List, Collapse, Col, Typography, Row} from 'antd';
+import {List, Collapse, Col, Typography, Row, Space} from 'antd';
 import LoopTemplateEditor from '../LoopTemplateEditor/LoopTemplateEditor';
 import ProjectListItemActions from './ProjectListItemActions';
 
@@ -21,7 +21,7 @@ export default function ProjectsList(): ReactElement {
 					<Typography.Title level={2}>Projects</Typography.Title>
 				</Col>
 			</Row>
-			<Row justify="center">
+			<Row justify="center" style={{marginBottom: '30px'}}>
 				<Col>
 					<AddProjectButton
 						onAddProject={(project) => setEditingProjectId(project.id)}
