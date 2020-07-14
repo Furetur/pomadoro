@@ -12,7 +12,7 @@ export default function TimerTemplateEditor({
 }: Props): ReactElement {
 	return useObserver(() => (
 		<Row style={{width: '100%'}}>
-			<Col span={10}>
+			<Col span={8}>
 				<Radio.Group
 					size="small"
 					value={timerTemplate.type}

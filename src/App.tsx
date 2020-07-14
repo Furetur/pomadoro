@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 import {Layout, Typography, Row, Col} from 'antd';
 import MainTimer from './components/MainTimer/MainTimer';
 import {observerBatching} from 'mobx-react';
-import batchedUpdates from 'mobx-react-lite/batchingForReactDom';
+import batchedUpdates from 'mobx-react/batchingForReactDom';
 
 observerBatching(batchedUpdates);
 

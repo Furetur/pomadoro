@@ -26,11 +26,6 @@ const AddProjectButton = ({onAddProject}: Props) => {
 		>
 			Add a project
 		</Button>
-		// <div>
-		// 	<button type="button" onClick={onClick}>
-		// 		+
-		// 	</button>
-		// </div>
 	));
 };
 

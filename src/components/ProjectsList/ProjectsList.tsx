@@ -1,13 +1,10 @@
 import React, {ReactElement, useContext, useState} from 'react';
 import {useObserver} from 'mobx-react';
 import mainStoreContext from '../../context/MainStoreContext';
-import ProjectCard from '../ProjectCard/ProjectCard';
-import ProjectListItem from './ProjectListItem';
 import AddProjectButton from './AddProjectButton';
-import './ProjectsList.css';
-import {List, Collapse, Col, Typography, Row, Space} from 'antd';
+import {Collapse, Col, Typography, Row} from 'antd';
 import LoopTemplateEditor from '../LoopTemplateEditor/LoopTemplateEditor';
-import ProjectListItemActions from './ProjectListItemActions';
+import {PlayCircleOutlined} from '@ant-design/icons';
 
 export default function ProjectsList(): ReactElement {
 	const [editingProjectId, setEditingProjectId] = useState(null);
@@ -50,7 +47,14 @@ export default function ProjectsList(): ReactElement {
 								{project.name}
 							</Typography.Text>
 						}
-						extra={<ProjectListItemActions project={project} />}
+						extra={
+							<PlayCircleOutlined
+								onClick={(event) => {
+									event.stopPropagation();
+									mainStore.switchProject(project);
+								}}
+							/>
+						}
 					>
 						<LoopTemplateEditor loopTemplate={project.loopTemplate} />
 					</Collapse.Panel>

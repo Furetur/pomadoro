@@ -1,10 +1,8 @@
 import React, {ReactElement} from 'react';
 import {useObserver} from 'mobx-react';
 import Timer from '../../models/Timer';
-import './TimerWatchFace.css';
 import formatSeconds from '../../utils/formatSeconds';
-import ProjectTopBar from '../Project/ProjectTopBar';
-import {Typography, Row, Col} from 'antd';
+import {Typography} from 'antd';
 import styled from 'styled-components';
 
 interface Props {
