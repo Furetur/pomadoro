@@ -27,7 +27,9 @@ export default function MainTimer(): ReactElement {
 				</Col>
 			</Row>
 			<Row justify="center">
-				<MainTimerActions />
+				<Col>
+					<MainTimerActions />
+				</Col>
 			</Row>
 		</>
 	));
