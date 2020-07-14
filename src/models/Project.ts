@@ -10,7 +10,7 @@ export default class Project {
 	constructor(id: number, name: string, template: LoopTemplate) {
 		this.id = id;
 		this.name = name;
-		this.loopTemplate = template;
+		this.loopTemplate = template.clone();
 	}
 
 	@action

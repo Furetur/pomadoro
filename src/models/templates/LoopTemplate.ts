@@ -6,15 +6,18 @@ import {observable, action} from 'mobx';
 import getIdGenerator from '../../utils/getIdGenerator';
 
 export default class LoopTemplate {
-	@observable timerTemplates: TimerTemplate[] = [
-		defaultWorkTimerTemplate.clone(),
-		defaultRestTimerTemplate.clone()
-	];
+	@observable timerTemplates: TimerTemplate[];
 
 	_getNextId: () => number;
 
-	constructor() {
-		this._getNextId = getIdGenerator(2);
+	constructor(timerTemplates: TimerTemplate[]) {
+		this.timerTemplates = timerTemplates.map((timerTemplate) =>
+			timerTemplate.clone()
+		);
+		const lastId = Math.max(
+			...this.timerTemplates.map((timerTemplate) => timerTemplate.id)
+		);
+		this._getNextId = getIdGenerator(lastId + 1);
 	}
 
 	@action
@@ -22,6 +25,13 @@ export default class LoopTemplate {
 		const nextId = this._getNextId();
 		this.timerTemplates.push(defaultWorkTimerTemplate.clone(nextId));
 	}
+
+	clone(): LoopTemplate {
+		return new LoopTemplate(this.timerTemplates);
+	}
 }
 
-export const defaultLoopTemplate = new LoopTemplate();
+export const defaultLoopTemplate = new LoopTemplate([
+	defaultWorkTimerTemplate.clone(),
+	defaultRestTimerTemplate.clone()
+]);

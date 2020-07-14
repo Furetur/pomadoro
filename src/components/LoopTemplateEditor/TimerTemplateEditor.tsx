@@ -37,7 +37,7 @@ export default function TimerTemplateEditor({
 					step={5}
 					min={0}
 					max={60}
-					defaultValue={20}
+					value={timerTemplate.duration}
 					onChange={(value) => timerTemplate.updateDuration(value)}
 				/>
 			</Col>

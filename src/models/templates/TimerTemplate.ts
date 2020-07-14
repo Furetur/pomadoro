@@ -7,6 +7,7 @@ export default class TimerTemplate {
 	id: number;
 
 	constructor(id: number, type: TimerType, duration: number) {
+		this.id = id;
 		this.type = type;
 		this.duration = duration;
 	}
