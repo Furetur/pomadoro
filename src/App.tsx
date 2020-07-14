@@ -2,13 +2,13 @@ import React, {ReactElement} from 'react';
 import mainStoreContext, {mainStore} from './context/MainStoreContext';
 import ProjectsList from './components/ProjectsList/ProjectsList';
 import './App.css';
-import Header from './components/Header/Header';
-import Main from './components/Main/Main';
-import AddProjectField from './components/ProjectsList/AddProjectField';
-import AddProjectButton from './components/ProjectsList/AddProjectButton';
 import 'antd/dist/antd.css';
 import {Layout, Typography, Row, Col} from 'antd';
 import MainTimer from './components/MainTimer/MainTimer';
+import {observerBatching} from 'mobx-react';
+import batchedUpdates from 'mobx-react-lite/batchingForReactDom';
+
+observerBatching(batchedUpdates);
 
 const App = (): ReactElement => {
 	return (
