@@ -26,7 +26,10 @@ export default function LoopTemplateEditor({
 				dataSource={loopTemplate.timerTemplates.slice()}
 				renderItem={(timerTemplate) => (
 					<List.Item>
-						<TimerTemplateEditor timerTemplate={timerTemplate} />
+						<TimerTemplateEditor
+							timerTemplate={timerTemplate}
+							loopTemplate={loopTemplate}
+						/>
 					</List.Item>
 				)}
 			/>

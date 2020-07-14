@@ -1,18 +1,22 @@
 import React, {ReactElement} from 'react';
 import TimerTemplate from '../../models/templates/TimerTemplate';
 import {useObserver} from 'mobx-react';
-import {Radio, Slider, Col, Row} from 'antd';
+import {Radio, Slider, Col, Row, Button} from 'antd';
+import {DeleteOutlined} from '@ant-design/icons';
+import LoopTemplate from '../../models/templates/LoopTemplate';
 
 interface Props {
+	loopTemplate: LoopTemplate;
 	timerTemplate: TimerTemplate;
 }
 
 export default function TimerTemplateEditor({
-	timerTemplate
+	timerTemplate,
+	loopTemplate
 }: Props): ReactElement {
 	return useObserver(() => (
 		<Row style={{width: '100%'}} align="middle">
-			<Col span={10}>
+			<Col span={8}>
 				<Radio.Group
 					size="small"
 					value={timerTemplate.type}
@@ -22,7 +26,7 @@ export default function TimerTemplateEditor({
 					<Radio.Button value="rest">Rest</Radio.Button>
 				</Radio.Group>
 			</Col>
-			<Col span={14}>
+			<Col span={12}>
 				<Slider
 					tooltipVisible={false}
 					marks={{
@@ -39,6 +43,16 @@ export default function TimerTemplateEditor({
 					max={60}
 					value={timerTemplate.duration}
 					onChange={(value) => timerTemplate.updateDuration(value)}
+				/>
+			</Col>
+			<Col span={4} style={{display: 'flex', justifyContent: 'flex-end'}}>
+				<Button
+					danger
+					icon={<DeleteOutlined />}
+					shape="circle"
+					onClick={() => {
+						loopTemplate.deleteTimer(timerTemplate.id);
+					}}
 				/>
 			</Col>
 		</Row>

@@ -36,6 +36,11 @@ export default class MainStore {
 	}
 
 	@action
+	deleteProject(id: number) {
+		this.projects = this.projects.filter((project) => project.id !== id);
+	}
+
+	@action
 	startProjectLoop(project: Project) {
 		this.currentLoop = Loop.fromTemplate(project.loopTemplate);
 		this.currentProject = project;

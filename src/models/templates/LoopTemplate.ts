@@ -26,6 +26,13 @@ export default class LoopTemplate {
 		this.timerTemplates.push(defaultWorkTimerTemplate.clone(nextId));
 	}
 
+	@action
+	deleteTimer(id: number) {
+		this.timerTemplates = this.timerTemplates.filter(
+			(timerTemplate) => timerTemplate.id !== id
+		);
+	}
+
 	clone(): LoopTemplate {
 		return new LoopTemplate(this.timerTemplates);
 	}

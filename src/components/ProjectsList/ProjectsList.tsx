@@ -2,9 +2,9 @@ import React, {ReactElement, useContext, useState} from 'react';
 import {useObserver} from 'mobx-react';
 import mainStoreContext from '../../context/MainStoreContext';
 import AddProjectButton from './AddProjectButton';
-import {Collapse, Col, Typography, Row} from 'antd';
+import {Collapse, Col, Typography, Row, Button} from 'antd';
 import LoopTemplateEditor from '../LoopTemplateEditor/LoopTemplateEditor';
-import {PlayCircleOutlined} from '@ant-design/icons';
+import {PlayCircleOutlined, DeleteOutlined} from '@ant-design/icons';
 
 export default function ProjectsList(): ReactElement {
 	const [editingProjectId, setEditingProjectId] = useState<number | null>(null);
@@ -62,6 +62,17 @@ export default function ProjectsList(): ReactElement {
 						}
 					>
 						<LoopTemplateEditor loopTemplate={project.loopTemplate} />
+						<Button
+							danger
+							icon={<DeleteOutlined />}
+							shape="round"
+							onClick={() => {
+								setEditingProjectId(null);
+								mainStore.deleteProject(project.id);
+							}}
+						>
+							Delete project
+						</Button>
 					</Collapse.Panel>
 				))}
 			</Collapse>
