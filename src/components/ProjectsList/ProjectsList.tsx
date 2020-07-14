@@ -5,8 +5,6 @@ import ProjectCard from '../ProjectCard/ProjectCard';
 import ProjectListItem from './ProjectListItem';
 import AddProjectButton from './AddProjectButton';
 import './ProjectsList.css';
-import RightAllignedHorizontalList from '../RightAllignedHorizontalList/RightAllignedHorizontalList';
-import FancyList from '../FancyList/FancyList';
 import {List, Collapse, Col, Typography, Row, Space} from 'antd';
 import LoopTemplateEditor from '../LoopTemplateEditor/LoopTemplateEditor';
 import ProjectListItemActions from './ProjectListItemActions';
@@ -28,13 +26,26 @@ export default function ProjectsList(): ReactElement {
 					/>
 				</Col>
 			</Row>
-			<Collapse accordion>
+			<Collapse
+				accordion
+				activeKey={editingProjectId}
+				onChange={(newEditingProjectId) =>
+					setEditingProjectId(
+						Number.parseInt(newEditingProjectId as string, 10)
+					)
+				}
+			>
 				{mainStore.projects.map((project) => (
 					<Collapse.Panel
 						key={project.id}
+						showArrow={false}
 						header={
 							<Typography.Text
-								editable={{onChange: (string) => project.setName(string)}}
+								editable={
+									project.id === editingProjectId && {
+										onChange: (string) => project.setName(string)
+									}
+								}
 							>
 								{project.name}
 							</Typography.Text>
