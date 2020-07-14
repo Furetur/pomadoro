@@ -2,17 +2,21 @@ import {observable, action, computed} from 'mobx';
 import TimerTemplate from './templates/TimerTemplate';
 
 export default class Timer {
-	@observable type: string;
-	@observable duration: number;
+	@observable template: TimerTemplate;
 	@observable completedSeconds = 0;
 
-	constructor(type: string, duration: number) {
-		this.type = type;
-		this.duration = duration;
+	constructor(template: TimerTemplate) {
+		this.template = template;
 	}
 
-	static fromTemplate(template: TimerTemplate): Timer {
-		return new Timer(template.type, template.duration);
+	@computed
+	get type(): string {
+		return this.template.type;
+	}
+
+	@computed
+	get duration(): number {
+		return this.template.duration;
 	}
 
 	@computed

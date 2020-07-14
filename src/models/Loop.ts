@@ -11,8 +11,8 @@ export default class Loop {
 	}
 
 	static fromTemplate(template: LoopTemplate): Loop {
-		const timers = template.timerTemplates.map((template) =>
-			Timer.fromTemplate(template)
+		const timers = template.timerTemplates.map(
+			(template) => new Timer(template)
 		);
 		return new Loop(timers);
 	}
