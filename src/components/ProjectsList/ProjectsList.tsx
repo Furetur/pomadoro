@@ -7,7 +7,7 @@ import LoopTemplateEditor from '../LoopTemplateEditor/LoopTemplateEditor';
 import {PlayCircleOutlined} from '@ant-design/icons';
 
 export default function ProjectsList(): ReactElement {
-	const [editingProjectId, setEditingProjectId] = useState(null);
+	const [editingProjectId, setEditingProjectId] = useState<number | null>(null);
 	const mainStore = useContext(mainStoreContext);
 	return useObserver(() => (
 		<>
@@ -25,12 +25,17 @@ export default function ProjectsList(): ReactElement {
 			</Row>
 			<Collapse
 				accordion
-				activeKey={editingProjectId}
-				onChange={(newEditingProjectId) =>
-					setEditingProjectId(
-						Number.parseInt(newEditingProjectId as string, 10)
-					)
+				activeKey={
+					editingProjectId === null ? null : editingProjectId.toString()
 				}
+				onChange={(newEditingProjectId) => {
+					if (typeof newEditingProjectId === 'string') {
+						const projectId = Number.parseInt(newEditingProjectId, 10);
+						setEditingProjectId(projectId);
+					} else {
+						setEditingProjectId(null);
+					}
+				}}
 			>
 				{mainStore.projects.map((project) => (
 					<Collapse.Panel

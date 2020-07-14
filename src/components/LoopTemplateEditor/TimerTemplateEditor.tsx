@@ -11,8 +11,8 @@ export default function TimerTemplateEditor({
 	timerTemplate
 }: Props): ReactElement {
 	return useObserver(() => (
-		<Row style={{width: '100%'}}>
-			<Col span={8}>
+		<Row style={{width: '100%'}} align="middle">
+			<Col span={10}>
 				<Radio.Group
 					size="small"
 					value={timerTemplate.type}
