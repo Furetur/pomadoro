@@ -42,8 +42,17 @@ export default class MainStore {
 	}
 
 	@action
+	unassignProject() {
+		this.currentProject = null;
+		this.currentLoop = Loop.fromTemplate(defaultLoopTemplate);
+	}
+
+	@action
 	switchProject(project: Project) {
 		this.currentProject = project;
+		if (!this.isTicking) {
+			this.currentLoop = Loop.fromTemplate(project.loopTemplate);
+		}
 	}
 
 	@action
