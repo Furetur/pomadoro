@@ -37,6 +37,10 @@ export default class MainStore {
 
 	@action
 	deleteProject(id: number) {
+		if (this.currentProject.id === id) {
+			this.unassignProject();
+		}
+
 		this.projects = this.projects.filter((project) => project.id !== id);
 	}
 

@@ -1,24 +1,24 @@
-import React, {ReactElement, useContext} from 'react';
+import React, {ReactElement} from 'react';
 import TimerWatchFace from './TimerWatchFace';
 import {useObserver} from 'mobx-react';
-import mainStoreContext from '../../context/MainStoreContext';
 import MainTimerActions from './MainTimerActions';
-import {Row, Col, Typography} from 'antd';
+import {Row, Col} from 'antd';
 import ProjectTopBar from '../Project/ProjectTopBar';
-import formatSeconds from '../../utils/formatSeconds';
-import styled from 'styled-components';
-
-const ApproximatelyCenterVertically = styled.div`
-	margin-top: 30vh;
-`;
+import TimerType from './TimerType';
+import useMainStore from '../../hooks/useMainStore';
 
 export default function MainTimer(): ReactElement {
-	const mainStore = useContext(mainStoreContext);
+	const mainStore = useMainStore();
 	return useObserver(() => (
 		<>
-			<Row justify="center">
+			<Row justify="center" style={{marginBottom: '50px'}}>
 				<Col>
 					<ProjectTopBar />
+				</Col>
+			</Row>
+			<Row justify="center">
+				<Col>
+					<TimerType timer={mainStore.currentTimer} />
 				</Col>
 			</Row>
 			<Row justify="center">
