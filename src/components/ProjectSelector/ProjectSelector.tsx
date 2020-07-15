@@ -3,7 +3,7 @@ import {useObserver} from 'mobx-react';
 import mainStoreContext from '../../context/MainStoreContext';
 import {Badge, Select} from 'antd';
 
-export default function ProjectTopBar(): ReactElement {
+export default function ProjectSelector(): ReactElement {
 	const mainStore = useContext(mainStoreContext);
 	return useObserver(() => (
 		<Select

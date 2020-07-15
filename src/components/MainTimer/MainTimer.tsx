@@ -3,7 +3,7 @@ import TimerWatchFace from './TimerWatchFace';
 import {useObserver} from 'mobx-react';
 import MainTimerActions from './MainTimerActions';
 import {Row, Col} from 'antd';
-import ProjectTopBar from '../Project/ProjectTopBar';
+import ProjectSelector from '../ProjectSelector/ProjectSelector';
 import TimerType from './TimerType';
 import useMainStore from '../../hooks/useMainStore';
 
@@ -13,7 +13,7 @@ export default function MainTimer(): ReactElement {
 		<>
 			<Row justify="center" style={{marginBottom: '50px'}}>
 				<Col>
-					<ProjectTopBar />
+					<ProjectSelector />
 				</Col>
 			</Row>
 			<Row justify="center">
