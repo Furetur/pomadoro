@@ -31,6 +31,7 @@
   },
   "scripts": {
     "start": "parcel public/index.html",
+    "build": "parcel build public/index.html",
     "test": "xo"
   },
   "dependencies": {
