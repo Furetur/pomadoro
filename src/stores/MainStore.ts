@@ -46,21 +46,21 @@ export default class MainStore {
 
 	@action
 	startProjectLoop(project: Project) {
-		this.currentLoop = Loop.fromTemplate(project.loopTemplate);
+		this.currentLoop = new Loop(project.loopTemplate);
 		this.currentProject = project;
 	}
 
 	@action
 	unassignProject() {
 		this.currentProject = null;
-		this.currentLoop = Loop.fromTemplate(defaultLoopTemplate);
+		this.currentLoop = new Loop(defaultLoopTemplate);
 	}
 
 	@action
 	switchProject(project: Project) {
 		this.currentProject = project;
 		if (!this.isTicking) {
-			this.currentLoop = Loop.fromTemplate(project.loopTemplate);
+			this.currentLoop = new Loop(project.loopTemplate);
 		}
 	}
 
@@ -100,10 +100,5 @@ export default class MainStore {
 	@action
 	switchToNextTimer() {
 		this.currentLoop.switchToNextTimer();
-	}
-
-	@action
-	switchToPreviousTimer() {
-		this.currentLoop.switchToPreviousTimer();
 	}
 }

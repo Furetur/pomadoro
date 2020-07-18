@@ -3,7 +3,7 @@ import MainStore from '../stores/MainStore';
 import Loop from '../models/Loop';
 import {defaultLoopTemplate} from '../models/templates/LoopTemplate';
 
-export const mainStore = new MainStore(Loop.fromTemplate(defaultLoopTemplate));
+export const mainStore = new MainStore(new Loop(defaultLoopTemplate));
 
 const mainStoreContext = createContext<MainStore>(mainStore);
 
